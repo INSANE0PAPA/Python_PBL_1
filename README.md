@@ -34,6 +34,50 @@ Calculates a consumer's electricity bill based on units consumed, using a slab (
 - Fixed charge: ₹100 (added to every bill)
 - Surcharge: 10% of the bill, applied only if the total exceeds ₹1000
 
+**Flowchart**
+ 
+```mermaid
+flowchart TD
+    A(["Start"]) --> B["Display program title"]
+    B --> C["Input consumer name, ID, units consumed"]
+    C --> D{"units <= 100?"}
+    D -->|Yes| E["energy charge = units x 1.5"]
+    D -->|No| F{"units <= 200?"}
+    F -->|Yes| G["energy charge = units x 2.5"]
+    F -->|No| H{"units <= 300?"}
+    H -->|Yes| I["energy charge = units x 4.0"]
+    H -->|No| J["energy charge = units x 5.5"]
+    E --> K["total bill = energy charge + fixed charge"]
+    G --> K
+    I --> K
+    J --> K
+    K --> L{"total bill > 1000?"}
+    L -->|Yes| M["surcharge = 10% of total; add to total"]
+    L -->|No| N["Display bill summary"]
+    M --> N
+    N --> O{"Calculate another bill?"}
+    O -->|Yes| C
+    O -->|No| P["Display Thank You message"]
+    P --> Q(["End"])
+```
+ 
+**Algorithm**
+ 
+1. Start.
+2. Display the program title.
+3. Input consumer name, consumer ID, and units consumed.
+4. If units ≤ 100, set energy charge = units × 1.5.
+5. Else if units ≤ 200, set energy charge = units × 2.5.
+6. Else if units ≤ 300, set energy charge = units × 4.0.
+7. Else, set energy charge = units × 5.5.
+8. Set total bill = energy charge + fixed charge (₹100).
+9. If total bill > 1000, set surcharge = 10% of total bill and add it to total bill.
+10. Display consumer details, energy charge, fixed charge, surcharge, and total bill.
+11. Ask the user if they want to calculate another bill.
+12. If the answer is "yes", repeat from step 3.
+13. Display "Thank You!" and stop.
+
+
 **Sample run**
 ```
 ======================================
@@ -81,6 +125,62 @@ Records a student's marks across five subjects and evaluates their overall perfo
 | 60 – 69 | C |
 | 50 – 59 | D |
 | Below 50 | F (Fail) |
+
+**Flowchart**
+ 
+```mermaid
+flowchart TD
+    A(["Start"]) --> B["Display program title"]
+    B --> C["Input student name and roll number"]
+    C --> D["Input marks for Python, Math, Physics, English, Computer"]
+    D --> E["total = sum of all 5 marks"]
+    E --> F["percentage = total / 5"]
+    F --> G{"percentage >= 90?"}
+    G -->|Yes| H["grade = A+"]
+    G -->|No| I{"percentage >= 80?"}
+    I -->|Yes| J["grade = A"]
+    I -->|No| K{"percentage >= 70?"}
+    K -->|Yes| L["grade = B"]
+    K -->|No| M{"percentage >= 60?"}
+    M -->|Yes| N["grade = C"]
+    M -->|No| O{"percentage >= 50?"}
+    O -->|Yes| P["grade = D"]
+    O -->|No| Q["grade = F"]
+    H --> R["Display result summary"]
+    J --> R
+    L --> R
+    N --> R
+    P --> R
+    Q --> R
+    R --> S{"grade == F?"}
+    S -->|Yes| T["Display FAIL"]
+    S -->|No| U["Display PASS"]
+    T --> V{"Add another student?"}
+    U --> V
+    V -->|Yes| C
+    V -->|No| W["Display Thank You message"]
+    W --> X(["End"])
+```
+ 
+**Algorithm**
+ 
+1. Start.
+2. Display the program title.
+3. Input student name and roll number.
+4. Input marks (out of 100) for Python, Math, Physics, English, and Computer.
+5. Calculate total marks = sum of all 5 subject marks.
+6. Calculate percentage = total marks / 5.
+7. If percentage ≥ 90, set grade = A+.
+8. Else if percentage ≥ 80, set grade = A.
+9. Else if percentage ≥ 70, set grade = B.
+10. Else if percentage ≥ 60, set grade = C.
+11. Else if percentage ≥ 50, set grade = D.
+12. Else, set grade = F.
+13. Display student name, roll number, total marks, percentage, and grade.
+14. If grade = F, display "FAIL"; else display "PASS".
+15. Ask the user if they want to add another student.
+16. If the answer is "yes", repeat from step 3.
+17. Display "Thank You" and stop.
 
 **Sample run**
 ```
